@@ -1,0 +1,183 @@
+[
+    {
+      "title": "Atomic Habits by James Clear",
+      "description": "Teaches how small, incremental changes in habits long-term improvements in life.",
+      "category": "business",
+      "trending": true,
+      "coverImage": "book-1.png",
+      "oldPrice": 29.99,
+      "newPrice": 19.99
+    },
+    {
+      "title": "The Power of Now by Eckhart Tolle",
+      "description": "Focuses on the importance of living in the present moment to achieve peace.",
+      "category": "books",
+      "trending": true,
+      "coverImage": "book-2.png",
+      "oldPrice": 24.99,
+      "newPrice": 14.99
+    },
+    {
+      "title": "The 7 Habits of Highly Effective People ",
+      "description": "Introduces seven principles for personal and professional effectiveness.",
+      "category": "marketing",
+      "trending": true,
+      "coverImage": "book-3.png",
+      "oldPrice": 39.99,
+      "newPrice": 29.99
+    },
+    {
+      "title": "Bhagavad Gita",
+      "description": "A spiritual guide that offers insights on duty, righteousness, and finding inner peace through devotion.",
+      "category": "business",
+      "trending": false,
+      "coverImage": "book-4.png",
+      "oldPrice": 49.99,
+      "newPrice": 39.99
+    },
+    {
+      "title": "How to Talk to Anyone ",
+      "description": "Provides practical communication techniques for building rapport, starting conversations.",
+      "category": "books",
+      "trending": true,
+      "coverImage": "book-5.png",
+      "oldPrice": 19.99,
+      "newPrice": 9.99
+    },
+    {
+      "title": "The Power of Your Subconscious Mind ",
+      "description": "Shows how harnessing the power of the subconscious can transform your thoughts, health, and success.",
+      "category": "marketing",
+      "trending": false,
+      "coverImage": "book-6.png",
+      "oldPrice": 44.99,
+      "newPrice": 34.99
+    },
+    {
+      "title": "Think and Grow Rich ",
+      "description": "Explores the mindset and principles that lead to wealth and success through focused thinking and goal-setting.",
+      "category": "horror",
+      "trending": true,
+      "coverImage": "book-7.png",
+      "oldPrice": 59.99,
+      "newPrice": 49.99
+    },
+    {
+      "title": "Chanakya Neeti",
+      "description": "A collection of ancient wisdom on governance, leadership, and strategy by the Indian philosopher Chanakya.",
+      "category": "fiction",
+      "trending": true,
+      "coverImage": "book-8.png",
+      "oldPrice": 21.99,
+      "newPrice": 16.99
+    },
+    {
+      "title": "Rich Dad Poor Dad ",
+      "description": "Contrasts two approaches to wealth—one focusing on traditional education and security, the other on financial literacy and entrepreneurship.",
+      "category": "adventure",
+      "trending": false,
+      "coverImage": "book-9.png",
+      "oldPrice": 27.99,
+      "newPrice": 18.99
+    },
+    {
+      "title": "Ikigai: The Japanese Secret",
+      "description": "Explores the Japanese concept of Ikigai, or finding purpose in life, as a key to happiness and longevity.",
+      "category": "fiction",
+      "trending": true,
+      "coverImage": "book-10.png",
+      "oldPrice": 14.99,
+      "newPrice": 10.99
+    },
+    {
+      "title": "How to Crack UPSC",
+      "description": "A guide with strategies, tips, and resources to help candidates successfully prepare for the UPSC Civil Services exam.",
+      "category": "fiction",
+      "trending": true,
+      "coverImage": "book-11.png",
+      "oldPrice": 32.99,
+      "newPrice": 25.99
+    },
+    {
+      "title": "History of Modern India ",
+      "description": "Provides a comprehensive overview of India history from the 18th century to independence, covering social, political, and economic developments.",
+      "category": "business",
+      "trending": true,
+      "coverImage": "book-12.png",
+      "oldPrice": 19.99,
+      "newPrice": 9.99
+    },
+    {
+      "title": "The Picture of Dorian Gray",
+      "description": "Oscar Wilde’s only novel is the dreamlike story of a young man who sells his soul for eternal youth and beauty.",
+      "category": "horror",
+      "trending": true,
+      "coverImage": "book-13.png",
+      "oldPrice": 26.99,
+      "newPrice": 21.99
+    },
+    {
+      "title": "The Giving Tree",
+      "description": "'Once there was a tree...and she loved a little boy.'So begins a story of unforgettable perception, beautifully written and illustrated by the gifted and versatile Shel Silverstein.",
+      "category": "fiction",
+      "trending": false,
+      "coverImage": "book-14.png",
+      "oldPrice": 34.99,
+      "newPrice": 24.99
+    },
+    {
+      "title": "Gone with the Wind",
+      "description": "Scarlett O'Hara, the beautiful, spoiled daughter of a well-to-do Georgia plantation owner, must use every means at her disposal to claw her way out of the poverty she finds herself in after Sherman's March to the Sea.",
+      "category": "fiction",
+      "trending": false,
+      "coverImage": "book-15.png",
+      "oldPrice": 22.99,
+      "newPrice": 12.99
+    },
+    {
+      "title": "The Lightning Thief",
+      "description": "Percy Jackson is a good kid, but he can't seem to focus on his schoolwork or control his temper. And lately, being away at boarding school is only getting worse - Percy could have sworn his pre-algebra teacher turned into a monster and tried to kill him",
+      "category": "fiction",
+      "trending": false,
+      "coverImage": "book-16.png",
+      "oldPrice": 24.99,
+      "newPrice": 19.99
+    },
+    {
+      "title": "Alice’s Adventures in Wonderland",
+      "description": "When Alice sees a white rabbit take a watch out of its waistcoat pocket she decides to follow it, and a sequence of most unusual events is set in motion. This mini book contains the entire topsy-turvy stories of Alice's Adventures in Wonderland",
+      "category": "adventure",
+      "trending": true,
+      "coverImage": "book-17.png",
+      "oldPrice": 49.99,
+      "newPrice": 39.99
+    },
+    {
+      "title": "Divergent",
+      "description": "On an appointed day of every year, all sixteen-year-olds must select the faction to which they will devote the rest of their lives. For Beatrice, the decision is between staying with her family and being who she really is",
+      "category": "business",
+      "trending": true,
+      "coverImage": "book-18.png",
+      "oldPrice": 18.99,
+      "newPrice": 12.99
+    },
+    {
+      "title": "The Alchemist",
+      "description": "Paulo Coelho's masterpiece tells the mystical story of Santiago, an Andalusian shepherd boy who yearns to travel in search of a worldly treasure.",
+      "category": "adventure",
+      "trending": true,
+      "coverImage": "book-19.png",
+      "oldPrice": 35.99,
+      "newPrice": 27.99
+    },
+    {
+      "title": "Four Thousand Weeks",
+      "description": "Nobody needs to be told there isn’t enough time. We’re obsessed with our lengthening to-do lists, overfilled inboxes, work-life balance, and ceaseless battle against distraction; we’re deluged with advice on becoming more productive and efficient",
+      "category": "business",
+      "trending": false,
+      "coverImage": "book-20.png",
+      "oldPrice": 24.99,
+      "newPrice": 14.99
+    }
+  ]
+  
