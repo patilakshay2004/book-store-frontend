@@ -2,13 +2,15 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getImgUrl } from '../../utils/getImgUrl';
-import { clearCart, removeFromCart } from '../../redux/features/cart/cartSlice';
+import { clearCart, removeFromCart,updateQuantity } from '../../redux/features/cart/cartSlice';
 
 const CartPage = () => {
     const cartItems = useSelector(state => state.cart.cartItems);
     const dispatch =  useDispatch()
 
-    const totalPrice =  cartItems.reduce((acc, item) => acc + item.newPrice, 0).toFixed(2);
+    const totalPrice = cartItems
+  .reduce((acc, item) => acc + item.newPrice * (item.quantity || 1), 0)
+  .toFixed(2);
 
     const handleRemoveFromCart = (product) => {
         dispatch(removeFromCart(product))
@@ -17,6 +19,11 @@ const CartPage = () => {
     const handleClearCart  = () => {
         dispatch(clearCart())
     }
+
+    const handleQuantityChange = (e, productId) => {
+        const quantity = Math.max(1, parseInt(e.target.value) || 1);
+        dispatch(updateQuantity({ id: productId, quantity }));
+      };
     return (
         <>
             <div className="flex mt-12 h-full flex-col overflow-hidden bg-white shadow-xl">
@@ -62,8 +69,19 @@ const CartPage = () => {
                                                             <p className="mt-1 text-sm text-gray-500 capitalize"><strong>Category: </strong>{product?.category}</p>
                                                         </div>
                                                         <div className="flex flex-1 flex-wrap items-end justify-between space-y-2 text-sm">
-                                                            <p className="text-gray-500"><strong>Qty:</strong> 1</p>
-
+                                                        <div className="flex items-center gap-2">
+                                                            <label htmlFor={`qty-${product._id}`} className="text-gray-500">
+                                                                 <strong>Qty:</strong>
+                                                            </label>
+                                                            <input
+                                                               id={`qty-${product._id}`}
+                                                               type="number"
+                                                               min="1"
+                                                               value={product.quantity || 1}
+                                                               onChange={(e) => handleQuantityChange(e, product._id)}
+                                                               className="w-16 border border-gray-300 rounded px-2 py-1 text-sm"
+                                                            />
+                                                        </div>
                                                             <div className="flex">
                                                                 <button
                                                                 onClick={() => handleRemoveFromCart(product)}
@@ -96,7 +114,7 @@ const CartPage = () => {
                     <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-6">
                         <Link
-                            to="/checkout"
+                            to={ cartItems.length == 0? "#" : "/checkout"}
                             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                             Checkout

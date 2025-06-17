@@ -1,65 +1,57 @@
 import { Link } from "react-router-dom";
-import { HiMiniBars3CenterLeft, HiOutlineHeart, HiOutlineShoppingCart } from "react-icons/hi2";
-import { IoSearchOutline } from "react-icons/io5";
+import { HiMiniBars3CenterLeft, HiOutlineShoppingCart } from "react-icons/hi2";
 import { HiOutlineUser } from "react-icons/hi";
-
-import avatarImg from "../assets/avatar.png"
+import avatarImg from "../assets/avatar.png";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useAuth } from "../context/AuthContext";
 
 const navigation = [
     { name: "Dashboard", href: "/user-dashboard" },
-    { name: "User Login", href: "/login" },
     { name: "Admin Login", href: "/admin" },
     { name: "Orders", href: "/orders" },
-]
+];
 
 const Navbar = () => {
-
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const cartItems = useSelector(state => state.cart.cartItems);
-
-    const { currentUser, logout } = useAuth()
+    const { currentUser, logout } = useAuth();
 
     const handleLogOut = () => {
-        logout()
-    }
+        logout();
+    };
 
     const token = localStorage.getItem('token');
+    const userName = currentUser ? currentUser.email : null; // First 3 letters of email in uppercase
 
     return (
-        <header className="max-w-screen-2xl mx-auto px-4 py-6 bg-slate-500">
+        <header className="max-w-screen-2xl mx-auto px-4 py-6 bg-slate-200">
             <nav className="flex justify-between items-center">
-                {/* left side */}
-                <div className="flex items-center md:gap-16 gap-4">
+                {/* Left Side */}
+                <div className="flex items-center md:gap-16 gap-2">
                     <Link to="/">
                         <HiMiniBars3CenterLeft className="size-6" />
                     </Link>
 
-                    {/* search input */}
+                    {/* Logo */}
                     <div className="relative sm:w-72 w-40 space-x-2">
-
-                        <IoSearchOutline className="absolute inline-block left-3 inset-y-2" />
-
-                        <input type="text" placeholder="Search here"
-                            className="bg-[#EAEAEA] w-full py-1 md:px-8 px-6 rounded-md focus:outline-none"
-                        />
+                        <img src="https://portal.bookify.space/media/logos/logo.png" alt="#" width={150} />
                     </div>
                 </div>
 
-
-                {/* rigth side */}
+                {/* Right Side */}
                 <div className="relative flex items-center md:space-x-8 space-x-2">
-                    
-                    <div >
+                    <div>
                         {
                             currentUser ? <>
-                                <button className='flex gap-2'onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                                    Login
-                                    <img src={avatarImg} alt="" className={`size-6 rounded-full ${currentUser ? 'ring-2 ring-blue-500' : ''}`} />
+                                <button 
+                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
+                                    className="flex gap-2">
+                                    <span>{userName}</span> {/* Display first 3 letters of email */}
+                                    <img src={avatarImg} alt="User Avatar" className={`size-6 rounded-full ${currentUser ? 'ring-2 ring-blue-500' : ''}`} />
                                 </button>
-                                {/* show dropdowns */}
+
+                                {/* Dropdown Menu */}
                                 {
                                     isDropdownOpen && (
                                         <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-40">
@@ -85,25 +77,23 @@ const Navbar = () => {
                             </> : token ? <Link to="/dashboard" className='border-b-2 border-primary'>Dashboard</Link> : (
                                 <div className="flex py-2 px-4 bg-primary items-center rounded-md">
                                     <Link to="/login" className="text-md font-semibold sm:ml-1">Login</Link>
-                                    <Link to="/login"> <HiOutlineUser className="size-5 " /></Link>
-                                    
+                                    <Link to="/login"><HiOutlineUser className="size-5 " /></Link>
                                 </div>
                             )
                         }
                     </div>
 
-                    <Link to="/cart" className="bg-primary py-2 px-4  flex items-center rounded-md">
+                    {/* Cart Button */}
+                    <Link to="/cart" className={`bg-primary py-2 px-4 flex items-center rounded-md ${cartItems.length > 0 ? 'bg-blue-500' : ''}`}>
                         <HiOutlineShoppingCart className='' />
-                        {
-                            cartItems.length > 0 ? <span className="text-sm font-semibold sm:ml-1">{cartItems.length}</span> : <span className="text-md font-semibold sm:ml-1">0</span>
-                        }
-
-
+                        <span className="text-sm font-semibold sm:ml-1">
+                            {cartItems.length > 0 ? cartItems.length : 0}
+                        </span>
                     </Link>
                 </div>
             </nav>
         </header>
-    )
-}
+    );
+};
 
 export default Navbar;

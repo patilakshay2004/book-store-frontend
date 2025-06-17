@@ -16,6 +16,7 @@ import ManageBooks from "../pages/dashboard/manageBooks/ManageBooks";
 import AddBook from "../pages/dashboard/addBook/AddBook";
 import UpdateBook from "../pages/dashboard/EditBook/UpdateBook";
 import UserDashboard from "../pages/dashboard/users/UserDashboard";
+import SearchBooks from "../pages/home/SearchBooks";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         {
           path: "/cart",
           element: <CartPage/>
+        },
+        {
+          path: "/search",
+          element: <SearchBooks/>
         },
         {
           path: "/checkout",
