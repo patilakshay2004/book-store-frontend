@@ -1,137 +1,141 @@
-import React, { useState } from 'react'
-import InputField from './InputField'
-import SelectField from './SelectField'
+import React, { useState } from 'react';
+import InputField from './InputField';
+import SelectField from './SelectField';
 import { useForm } from 'react-hook-form';
 import { useAddBookMutation } from '../../../redux/features/books/booksApi';
 import Swal from 'sweetalert2';
+import { FiUpload } from 'react-icons/fi';
 
 const AddBook = () => {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const [imageFile, setimageFile] = useState(null);
-    const [addBook, {isLoading, isError}] = useAddBookMutation()
-    const [imageFileName, setimageFileName] = useState('')
-    const onSubmit = async (data) => {
- 
-        const newBookData = {
-            ...data,
-            coverImage: imageFileName
-        }
-        try {
-            await addBook(newBookData).unwrap();
-            Swal.fire({
-                title: "Book added",
-                text: "Your book is uploaded successfully!",
-                icon: "success",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, It's Okay!"
-              });
-              reset();
-              setimageFileName('')
-              setimageFile(null);
-        } catch (error) {
-            console.error(error);
-            alert("Failed to add book. Please try again.")   
-        }
-      
-    }
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const [imageFile, setImageFile] = useState(null);
+  const [imageFileName, setImageFileName] = useState('');
+  const [addBook, { isLoading }] = useAddBookMutation();
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if(file) {
-            setimageFile(file);
-            setimageFileName(file.name);
-        }
+  const onSubmit = async (data) => {
+    const newBookData = { ...data, coverImage: imageFileName };
+    try {
+      await addBook(newBookData).unwrap();
+      Swal.fire({
+        title: "Book Added",
+        text: "Your book has been uploaded successfully!",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+      });
+      reset();
+      setImageFile(null);
+      setImageFileName('');
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        title: "Error",
+        text: "Failed to add book. Please try again.",
+        icon: "error",
+      });
     }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setImageFileName(file.name);
+    }
+  };
+
   return (
-    <div className="max-w-lg   mx-auto md:p-6 p-3 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Book</h2>
+    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Add New Book</h2>
 
-      {/* Form starts here */}
-      <form onSubmit={handleSubmit(onSubmit)} className=''>
-        {/* Reusable Input Field for Title */}
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Title */}
         <InputField
           label="Title"
           name="title"
           placeholder="Enter book title"
           register={register}
+          error={errors.title}
         />
 
-        {/* Reusable Textarea for Description */}
+        {/* Description */}
         <InputField
           label="Description"
           name="description"
           placeholder="Enter book description"
           type="textarea"
           register={register}
-
+          error={errors.description}
         />
 
-        {/* Reusable Select Field for Category */}
+        {/* Category */}
         <SelectField
           label="Category"
           name="category"
           options={[
-            { value: '', label: 'Choose A Category' },
+            { value: '', label: 'Select a Category' },
             { value: 'business', label: 'Business' },
             { value: 'technology', label: 'Technology' },
             { value: 'fiction', label: 'Fiction' },
             { value: 'horror', label: 'Horror' },
             { value: 'adventure', label: 'Adventure' },
-            // Add more options as needed
           ]}
           register={register}
+          error={errors.category}
         />
 
-        {/* Trending Checkbox */}
-        <div className="mb-4">
-          <label className="inline-flex items-center">
-            <input
-              type="checkbox"
-              {...register('trending')}
-              className="rounded text-blue-600 focus:ring focus:ring-offset-2 focus:ring-blue-500"
-            />
-            <span className="ml-2 text-sm font-semibold text-gray-700">Trending</span>
-          </label>
+        {/* Trending */}
+        <div className="flex items-center mb-4">
+          <input
+            type="checkbox"
+            {...register('trending')}
+            className="h-5 w-5 text-blue-600 rounded focus:ring focus:ring-blue-500"
+          />
+          <label className="ml-2 text-gray-700 font-semibold">Trending</label>
         </div>
 
-        {/* Old Price */}
-        <InputField
-          label="Old Price"
-          name="oldPrice"
-          type="number"
-          placeholder="Old Price"
-          register={register}
-         
-        />
+        {/* Prices */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <InputField
+            label="Old Price"
+            name="oldPrice"
+            type="number"
+            placeholder="Old Price"
+            register={register}
+            error={errors.oldPrice}
+          />
+          <InputField
+            label="New Price"
+            name="newPrice"
+            type="number"
+            placeholder="New Price"
+            register={register}
+            error={errors.newPrice}
+          />
+        </div>
 
-        {/* New Price */}
-        <InputField
-          label="New Price"
-          name="newPrice"
-          type="number"
-          placeholder="New Price"
-          register={register}
-          
-        />
-
-        {/* Cover Image Upload */}
+        {/* Cover Image */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Cover Image</label>
-          <input type="file" accept="image/*" onChange={handleFileChange} className="mb-2 w-full" />
-          {imageFileName && <p className="text-sm text-gray-500">Selected: {imageFileName}</p>}
+          <label className="block text-gray-700 font-semibold mb-2">Cover Image</label>
+          <div className="flex items-center border border-dashed border-gray-300 rounded-md p-4 cursor-pointer hover:bg-gray-50 transition">
+            <FiUpload className="text-gray-500 mr-2" />
+            <input type="file" accept="image/*" onChange={handleFileChange} className="w-full cursor-pointer" />
+          </div>
+          {imageFileName && <p className="mt-2 text-sm text-gray-500">Selected: {imageFileName}</p>}
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="w-full py-2 bg-green-500 text-white font-bold rounded-md">
-         {
-            isLoading ? <span className="">Adding.. </span> : <span>Add Book</span>
-          }
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`w-full py-3 text-white font-bold rounded-lg transition ${
+            isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-500 hover:bg-green-600'
+          }`}
+        >
+          {isLoading ? 'Adding...' : 'Add Book'}
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default AddBook
+export default AddBook;
