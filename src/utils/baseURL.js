@@ -1,5 +1,5 @@
 const getBaseUrl = () => {
-    return "https://book-store-backend-6tt7.onrender.com/"
+    return "fetch(`${import.meta.env.VITE_API_URL}"
 }
 
 export default getBaseUrl;
