@@ -24,18 +24,46 @@ const TopSellers = () => {
         <div className='py-10 max-w-7xl mx-auto px-6'>
 
             {/* Heading */}
-            <h2 className='text-3xl font-semibold mb-6'>Top Sellers</h2>
-
-            {/* 🔍 Search */}
-            <div className='mb-8'>
-                <input
-                    type="text"
-                    placeholder="Search book by name..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className='w-full md:w-1/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
-                />
+            <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold mb-2">
+                    🔍 Find Your Favorite Books
+                </h2>
+                <p className="text-gray-500">
+                    Search from hundreds of books instantly
+                </p>
             </div>
+
+           {/* 🔍 Search */}
+<div className="flex justify-center mb-10">
+  <div className="relative w-full md:w-1/2 group">
+
+    {/* Search Icon */}
+    <span className="absolute inset-y-0 left-3 flex items-center text-gray-400 group-focus-within:text-blue-500 transition">
+      🔍
+    </span>
+
+    {/* Input */}
+    <input
+      type="text"
+      placeholder="Search books..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="w-full pl-10 pr-10 py-3 rounded-full border border-gray-300 shadow-sm 
+                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                 transition-all duration-300"
+    />
+
+    {/* Clear Button */}
+    {search && (
+      <button
+        onClick={() => setSearch("")}
+        className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-red-500"
+      >
+        ✕
+      </button>
+    )}
+  </div>
+</div>
 
             {/* Loading */}
             {isLoading && <p className="text-center">Loading...</p>}
